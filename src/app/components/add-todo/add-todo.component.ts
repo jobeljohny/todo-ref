@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { TodoListService } from '../../services/todo-list.service';
+import { Task } from '../../models/task.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-add-todo',
@@ -10,6 +13,8 @@ export class AddTodoComponent {
   taskDescription: string = '';
   taskEndDate: Date = new Date();
 
+  constructor(private todoService: TodoListService) {}
+
   createTask() {
     console.log(this.taskEndDate);
 
@@ -17,13 +22,13 @@ export class AddTodoComponent {
       return;
     }
 
-    // Logic to handle the created task can be added here
-    console.log('Task Created:', {
-      heading: this.taskHeading,
+    const task: Task = {
+      id: uuidv4(),
+      heading: this.taskHeading.trim(),
       description: this.taskDescription,
-      endDate: this.taskEndDate,
-    });
-    this.taskHeading = '';
-    this.taskDescription = '';
+      endDate: this.taskEndDate.toDateString(),
+    };
+
+    this.todoService.add(task);
   }
 }

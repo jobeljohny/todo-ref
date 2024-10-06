@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Task } from '../../models/task.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { Task } from '../../models/task.model';
   styleUrl: './task-view.component.scss',
 })
 export class TaskViewComponent {
-  public task: Task = {
+  @Input() task: Task = {
     id: 'asdasd',
     heading: 'Test',
     endDate: Date.now().toString(),
