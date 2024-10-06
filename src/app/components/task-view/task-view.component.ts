@@ -7,10 +7,16 @@ import { Task } from '../../models/task.model';
   styleUrl: './task-view.component.scss',
 })
 export class TaskViewComponent {
-  public task: Task | null = {
+  public task: Task = {
     id: 'asdasd',
     heading: 'Test',
     endDate: Date.now().toString(),
     description: 'sdasdasdasdasfdf jdhf akdjshf ksjdhf laskdjh',
   };
+
+  onMarkClick() {
+    if (this.task) {
+      this.task.isCompleted = !this.task.isCompleted;
+    }
+  }
 }
