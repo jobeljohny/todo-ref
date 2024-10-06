@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TaskViewComponent } from './components/task-view/task-view.component';
 import { MatCardModule } from '@angular/material/card';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,8 +17,16 @@ import { MatCardModule } from '@angular/material/card';
     AddTodoComponent,
     HeaderComponent,
     TaskViewComponent,
+    NavBarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, MatCardModule],
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    MatCardModule,
+    MatTabsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
