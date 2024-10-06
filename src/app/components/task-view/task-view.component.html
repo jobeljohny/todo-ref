@@ -1,0 +1,12 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title> {{ task?.heading }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <span>Description: </span>
+    <span>{{ task?.description }}</span>
+    <br />
+    <span>End Date: </span>
+    <span>{{ task?.endDate | date : "fullDate" }}</span>
+  </mat-card-content>
+</mat-card>
