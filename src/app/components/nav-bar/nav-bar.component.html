@@ -1,10 +1,17 @@
-<div class="continer">
+<div class="container">
   <mat-tab-group>
     <mat-tab label="Tasks">
       <!-- display the list of tasks -->
-      @for (item of tasks; track item.id) {
-      <app-task-view [task]="item"></app-task-view>
-      }
+      <div class="tasks-list">
+        @for (item of tasks; track item.id) {
+        <app-task-view [task]="item"></app-task-view>
+        } @empty {
+        <div class="empty-message">
+          Uh-oh! It looks like there are no tasks to display. Click on 'Add
+          Task' to create a new one
+        </div>
+        }
+      </div>
     </mat-tab>
     <mat-tab label="Add Task"><app-add-todo></app-add-todo> </mat-tab>
   </mat-tab-group>
