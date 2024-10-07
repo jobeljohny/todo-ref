@@ -9,7 +9,12 @@ import { Task } from '../../models/task.model';
 })
 export class NavBarComponent {
   tasks: Task[] = [];
+
   constructor(private todoService: TodoListService) {
     this.tasks = todoService.getAll();
+  }
+
+  onDeleteClicked(id: string) {
+    this.todoService.delete(id);
   }
 }

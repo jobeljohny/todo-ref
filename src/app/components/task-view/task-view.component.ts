@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../../models/task.model';
 
 @Component({
@@ -7,16 +7,17 @@ import { Task } from '../../models/task.model';
   styleUrl: './task-view.component.scss',
 })
 export class TaskViewComponent {
-  @Input() task: Task = {
-    id: 'asdasd',
-    heading: 'Test',
-    endDate: Date.now().toString(),
-    description: 'sdasdasdasdasfdf jdhf akdjshf ksjdhf laskdjh',
-  };
+  @Input() task!: Task;
+
+  @Output() deleteClicked = new EventEmitter<string>();
 
   onMarkClick() {
     if (this.task) {
       this.task.isCompleted = !this.task.isCompleted;
     }
+  }
+
+  deleteTask() {
+    this.deleteClicked.emit(this.task.id);
   }
 }

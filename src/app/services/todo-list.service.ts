@@ -18,6 +18,10 @@ export class TodoListService {
   }
 
   delete(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+    let index = this.tasks.findIndex((task) => task.id === id);
+
+    if (index > -1) {
+      this.tasks.splice(index, 1);
+    }
   }
 }

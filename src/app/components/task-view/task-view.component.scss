@@ -19,3 +19,19 @@ $button-color: #025dbb;
 .completed {
   text-decoration: line-through;
 }
+
+.delete-btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    height: 30px;
+    width: 30px;
+  }
+}

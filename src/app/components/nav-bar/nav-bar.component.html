@@ -4,7 +4,10 @@
       <!-- display the list of tasks -->
       <div class="tasks-list">
         @for (item of tasks; track item.id) {
-        <app-task-view [task]="item"></app-task-view>
+        <app-task-view
+          [task]="item"
+          (deleteClicked)="onDeleteClicked($event)"
+        ></app-task-view>
         } @empty {
         <div class="empty-message">
           Uh-oh! It looks like there are no tasks to display. Click on 'Add
