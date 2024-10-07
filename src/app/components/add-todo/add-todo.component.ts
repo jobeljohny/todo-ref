@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TodoListService } from '../../services/todo-list.service';
 import { Task } from '../../models/task.model';
 import { v4 as uuidv4 } from 'uuid';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-todo',
@@ -13,12 +14,16 @@ export class AddTodoComponent {
   taskDescription: string = '';
   taskEndDate: Date = new Date();
 
-  constructor(private todoService: TodoListService) {}
+  constructor(
+    private todoService: TodoListService,
+    private toastr: ToastrService
+  ) {}
 
   createTask() {
     console.log(this.taskEndDate);
 
     if (this.taskHeading.trim().length === 0) {
+      this.toastr.error('Empty heading!');
       return;
     }
 
@@ -30,5 +35,15 @@ export class AddTodoComponent {
     };
 
     this.todoService.add(task);
+    this.toastr.success(`'${task.heading}' added successfully`);
+
+    // Reset for variables
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.taskHeading = '';
+    this.taskDescription = '';
+    this.taskEndDate = new Date();
   }
 }
