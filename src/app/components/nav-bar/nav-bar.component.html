@@ -1,6 +1,7 @@
 <div class="continer">
   <mat-tab-group>
     <mat-tab label="Tasks">
+      <!-- display the list of tasks -->
       @for (item of tasks; track item.id) {
       <app-task-view [task]="item"></app-task-view>
       }
