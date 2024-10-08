@@ -1,25 +1,9 @@
-<mat-card appearance="outlined">
-  <mat-card-header>
-    <mat-card-title [class.completed]="task.isCompleted">
-      {{ task.heading }}</mat-card-title
-    >
-  </mat-card-header>
-  <mat-card-content>
-    <span>Description: </span>
-    <span>{{ task.description }}</span>
-
-    <br />
-    <span>End Date: </span>
-    <span>{{ task.endDate | date : "fullDate" }}</span>
-
-    <br />
-    <div class="actions">
-      <button class="mark-btn" (click)="onMarkClick()">
-        {{ task.isCompleted ? "Mark not Completed" : "Mark Completed" }}
-      </button>
-    </div>
-  </mat-card-content>
-  <div class="delete-btn" (click)="deleteTask()">
-    <img src="/assets/bin.png" alt="" />
+<div class="container">
+  <div class="title">
+    {{ task.heading }}
   </div>
-</mat-card>
+
+  <div class="content">
+    <span>{{ task.description }}</span>
+  </div>
+</div>

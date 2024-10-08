@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TodoListService } from '../../services/todo-list.service';
 import { Task } from '../../models/task.model';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class AddTodoComponent {
   taskHeading: string = '';
   taskDescription: string = '';
-  taskEndDate: Date = new Date();
+
+  @Output('onAdd') onAdd = new EventEmitter<Task>();
 
   constructor(
     private todoService: TodoListService,
@@ -20,21 +21,17 @@ export class AddTodoComponent {
   ) {}
 
   createTask() {
-    console.log(this.taskEndDate);
-
     if (this.taskHeading.trim().length === 0) {
       this.toastr.error('Empty heading!');
       return;
     }
 
     const task: Task = {
-      id: uuidv4(),
       heading: this.taskHeading.trim(),
       description: this.taskDescription,
-      endDate: this.taskEndDate.toDateString(),
     };
 
-    this.todoService.add(task);
+    this.onAdd.emit(task);
     this.toastr.success(`'${task.heading}' added successfully`);
 
     // Reset for variables
@@ -44,6 +41,5 @@ export class AddTodoComponent {
   resetForm() {
     this.taskHeading = '';
     this.taskDescription = '';
-    this.taskEndDate = new Date();
   }
 }

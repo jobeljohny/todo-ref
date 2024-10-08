@@ -3,7 +3,7 @@
     <mat-tab label="Tasks">
       <!-- display the list of tasks -->
       <div class="tasks-list">
-        @for (item of tasks; track item.id) {
+        @for (item of tasks; track item.heading) {
         <app-task-view
           [task]="item"
           (deleteClicked)="onDeleteClicked($event)"
@@ -16,6 +16,8 @@
         }
       </div>
     </mat-tab>
-    <mat-tab label="Add Task"><app-add-todo></app-add-todo> </mat-tab>
+    <mat-tab label="Add Task"
+      ><app-add-todo (onAdd)="add($event)"></app-add-todo>
+    </mat-tab>
   </mat-tab-group>
 </div>

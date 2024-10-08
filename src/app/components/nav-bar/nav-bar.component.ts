@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TodoListService } from '../../services/todo-list.service';
 import { Task } from '../../models/task.model';
+import { TodoListService } from '../../services/todo-list.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,13 +8,19 @@ import { Task } from '../../models/task.model';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent {
-  tasks: Task[] = [];
+  tasks: Task[] = [{heading:'test','description':'this is a test'}];
 
-  constructor(private todoService: TodoListService) {
-    this.tasks = todoService.getAll();
+  constructor() {}
+
+  add(task: Task) {
+    this.tasks.push(task);
   }
 
   onDeleteClicked(id: string) {
-    this.todoService.delete(id);
+    let index = this.tasks.findIndex((task) => task.heading === id);
+
+    if (index > -1) {
+      this.tasks.splice(index, 1);
+    }
   }
 }

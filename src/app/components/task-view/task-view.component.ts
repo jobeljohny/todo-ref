@@ -11,13 +11,7 @@ export class TaskViewComponent {
 
   @Output() deleteClicked = new EventEmitter<string>();
 
-  onMarkClick() {
-    if (this.task) {
-      this.task.isCompleted = !this.task.isCompleted;
-    }
-  }
-
   deleteTask() {
-    this.deleteClicked.emit(this.task.id);
+    this.deleteClicked.emit(this.task.heading);
   }
 }
